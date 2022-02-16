@@ -1,6 +1,8 @@
 {
   "version": 2,
   "projects": {
+    "exercism-ui": "libs/exercism-ui",
+    "exercism-ui-e2e": "apps/exercism-ui-e2e",
     "testimonials-list": "apps/testimonials-list",
     "testimonials-list-e2e": "apps/testimonials-list-e2e"
   }
