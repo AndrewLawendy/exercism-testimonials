@@ -11,9 +11,9 @@ export const ColorsWrapper = () => {
             display: 'flex',
             justifyContent: 'space-between',
             borderLeft: `100px solid ${value}`,
-            py: '16px',
-            px: '8px',
-            my: '16px',
+            py: 'spacing-s',
+            px: 'spacing-xs',
+            my: 'spacing-s',
             transition: 'background-color .2s',
 
             ':hover': {
@@ -38,9 +38,9 @@ export const SpaceWrapper = () => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            py: '16px',
-            px: '8px',
-            my: '16px',
+            py: 'spacing-s',
+            px: 'spacing-xs',
+            my: 'spacing-s',
             transition: 'background-color .2s',
 
             ':hover': {
@@ -65,9 +65,9 @@ export const ShadowWrapper = () => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            py: '16px',
-            px: '8px',
-            my: '16px',
+            py: 'spacing-s',
+            px: 'spacing-xs',
+            my: 'spacing-s',
             boxShadow: value,
             transition: 'background-color .2s',
 
