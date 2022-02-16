@@ -1,0 +1,28 @@
+{
+  "root": "apps/@exercism-ui-storybook-e2e",
+  "sourceRoot": "apps/@exercism-ui-storybook-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/@exercism-ui-storybook-e2e/cypress.json",
+        "devServerTarget": "@exercism-ui-storybook:storybook"
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "@exercism-ui-storybook:storybook:ci"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/@exercism-ui-storybook-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["@exercism-ui-storybook"]
+}

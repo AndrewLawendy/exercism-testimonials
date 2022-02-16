@@ -15,7 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@exercism-testimonials/exercism-ui": ["libs/exercism-ui/src/index.ts"]
+      "@exercism-testimonials/@exercism-ui/storybook": [
+        "libs/@exercism-ui/storybook/src/index.ts"
+      ],
+      "@exercism-testimonials/@exercism-ui/table": [
+        "libs/@exercism-ui/table/src/index.ts"
+      ],
+      "@exercism-testimonials/@exercism-ui/theme": [
+        "libs/@exercism-ui/theme/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
