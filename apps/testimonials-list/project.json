@@ -1,0 +1,73 @@
+{
+  "root": "apps/testimonials-list",
+  "sourceRoot": "apps/testimonials-list/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/testimonials-list",
+        "index": "apps/testimonials-list/src/index.html",
+        "baseHref": "/",
+        "main": "apps/testimonials-list/src/main.tsx",
+        "polyfills": "apps/testimonials-list/src/polyfills.ts",
+        "tsConfig": "apps/testimonials-list/tsconfig.app.json",
+        "assets": [
+          "apps/testimonials-list/src/favicon.ico",
+          "apps/testimonials-list/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/testimonials-list/src/environments/environment.ts",
+              "with": "apps/testimonials-list/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "testimonials-list:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "testimonials-list:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/testimonials-list/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/testimonials-list"],
+      "options": {
+        "jestConfig": "apps/testimonials-list/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

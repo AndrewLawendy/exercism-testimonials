@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "testimonials-list": "apps/testimonials-list",
+    "testimonials-list-e2e": "apps/testimonials-list-e2e"
+  }
+}

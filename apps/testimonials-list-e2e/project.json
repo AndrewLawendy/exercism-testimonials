@@ -1,0 +1,28 @@
+{
+  "root": "apps/testimonials-list-e2e",
+  "sourceRoot": "apps/testimonials-list-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/testimonials-list-e2e/cypress.json",
+        "devServerTarget": "testimonials-list:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "testimonials-list:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/testimonials-list-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["testimonials-list"]
+}
