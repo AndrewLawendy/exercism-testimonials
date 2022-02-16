@@ -1,14 +1,16 @@
 import { Story, Meta } from '@storybook/react';
-import { ExercismUiTheme, ExercismUiThemeProps } from './@exercism-ui-theme';
+import {
+  ColorsWrapper,
+  SpaceWrapper,
+  ShadowWrapper,
+} from './@exercism-ui-theme-story-wrapper';
 
 export default {
-  component: ExercismUiTheme,
-  title: 'ExercismUiTheme',
+  title: 'Theme',
 } as Meta;
 
-const Template: Story<ExercismUiThemeProps> = (args) => (
-  <ExercismUiTheme {...args} />
-);
+export const Colors: Story = () => <ColorsWrapper />;
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Space: Story = () => <SpaceWrapper />;
+
+export const Shadow: Story = () => <ShadowWrapper />;
