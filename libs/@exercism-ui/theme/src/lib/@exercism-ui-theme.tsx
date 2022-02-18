@@ -22,11 +22,13 @@ const theme = {
     'light-label': '#130B43',
     'light-label-secondary': '#5C5589',
     'light-label-tertiary': '#76709F',
+    'light-highlight': '#E1EBFF',
 
     'dark-text-label': '#F0F3F9',
     'dark-text-label-tertiary': '#6A6781',
 
     'stroke-19': '#EAECF3',
+    'stroke-border-light': '#D5D8E4',
 
     background: '#E5E5E5',
     'background-light': '#FBFCFE',

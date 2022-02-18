@@ -2,6 +2,8 @@
 import { useTable, usePagination, UseTableOptions } from 'react-table';
 import { keyframes } from '@emotion/react';
 
+import { Button, ButtonToggle } from 'libs/@exercism-ui/button/src';
+
 export interface TableProps<T extends Record<string, unknown>>
   extends UseTableOptions<T> {
   isLoading?: boolean;
@@ -229,7 +231,7 @@ function Table<T extends Record<string, unknown>>({
           py: 'spacing-s',
         }}
       >
-        <button
+        <Button
           disabled={!canPreviousPage}
           onClick={() => {
             previousPage();
@@ -237,21 +239,22 @@ function Table<T extends Record<string, unknown>>({
           }}
         >
           Previous
-        </button>
-        <div sx={{ display: 'flex' }}>
-          {pageOptions.map((pageIndex: number) => (
-            <button
-              key={`pagination-${pageIndex}`}
+        </Button>
+        <div sx={{ display: 'flex', gap: 12 }}>
+          {pageOptions.map((pageOption: number) => (
+            <ButtonToggle
+              active={pageOption === pageIndex}
+              key={`pagination-${pageOption}`}
               onClick={() => {
-                gotoPage(pageIndex);
-                onPageChange?.(pageIndex);
+                gotoPage(pageOption);
+                onPageChange?.(pageOption);
               }}
             >
-              {pageIndex + 1}
-            </button>
+              {pageOption + 1}
+            </ButtonToggle>
           ))}
         </div>
-        <button
+        <Button
           disabled={!canNextPage}
           onClick={() => {
             nextPage();
@@ -259,7 +262,7 @@ function Table<T extends Record<string, unknown>>({
           }}
         >
           Next
-        </button>
+        </Button>
       </div>
     </div>
   );
