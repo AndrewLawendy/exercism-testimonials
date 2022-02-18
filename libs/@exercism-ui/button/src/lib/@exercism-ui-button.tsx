@@ -1,12 +1,17 @@
 /** @jsxImportSource theme-ui */
 import { FC } from 'react';
-import { ButtonProps } from 'theme-ui';
+import { ButtonProps as ThemeUIButtonProps } from 'theme-ui';
 
-interface ButtonToggleProps extends ButtonProps {
+interface ButtonProps extends ThemeUIButtonProps {
+  icon?: React.ReactElement;
+  iconPosition?: 'start' | 'end';
+}
+
+interface ButtonToggleProps extends ThemeUIButtonProps {
   active?: boolean;
 }
 
-const ButtonBase: FC<ButtonProps> = ({ disabled, ...props }) => {
+const ButtonBase: FC<ThemeUIButtonProps> = ({ disabled, ...props }) => {
   return (
     <button
       {...props}
@@ -30,19 +35,39 @@ const ButtonBase: FC<ButtonProps> = ({ disabled, ...props }) => {
   );
 };
 
-export const Button: FC<ButtonProps> = ({ disabled, ...props }) => {
+export const Button: FC<ButtonProps> = ({
+  disabled,
+  icon,
+  iconPosition,
+  children,
+  ...props
+}) => {
+  const isRevers = icon && iconPosition === 'end';
+
   return (
     <ButtonBase
       {...props}
       disabled={disabled}
       sx={{
+        display: 'flex',
+        alignItems: 'center',
+        flexDirection: isRevers ? 'row-reverse' : null,
         boxShadow: disabled ? null : '0px 2px rgba(203, 201, 217, 0.6)',
 
         '&:active': {
           boxShadow: '0px 1px rgba(203, 201, 217, 0.6)',
         },
+
+        svg: {
+          mr: isRevers ? null : 5,
+          ml: isRevers ? 5 : null,
+          height: 12,
+        },
       }}
-    />
+    >
+      {iconPosition && icon}
+      <span>{children}</span>
+    </ButtonBase>
   );
 };
 

@@ -7,6 +7,10 @@ import {
   ButtonToggle,
 } from '@exercism-testimonials/@exercism-ui/button';
 import { Loading } from '@exercism-testimonials/@exercism-ui/icons';
+import {
+  ArrowLeft,
+  ArrowRight,
+} from '@exercism-testimonials/@exercism-ui/icons';
 
 export interface TableProps<T extends Record<string, unknown>>
   extends UseTableOptions<T> {
@@ -160,6 +164,8 @@ function Table<T extends Record<string, unknown>>({
         }}
       >
         <Button
+          icon={<ArrowLeft />}
+          iconPosition="start"
           disabled={!canPreviousPage}
           onClick={() => {
             previousPage();
@@ -183,6 +189,8 @@ function Table<T extends Record<string, unknown>>({
           ))}
         </div>
         <Button
+          icon={<ArrowRight />}
+          iconPosition="end"
           disabled={!canNextPage}
           onClick={() => {
             nextPage();
