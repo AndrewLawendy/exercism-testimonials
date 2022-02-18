@@ -1,7 +1,7 @@
 describe('@exercism-ui-icons: ExercismUiIcons component', () => {
   beforeEach(() => cy.visit('/iframe.html?id=exercismuiicons--primary'));
-    
-    it('should render the component', () => {
-      cy.get('h1').should('contain', 'Welcome to ExercismUiIcons!');
-    });
+
+  it('should render the component', () => {
+    cy.get('h1').should('contain', 'Welcome to ExercismUiIcons!');
+  });
 });

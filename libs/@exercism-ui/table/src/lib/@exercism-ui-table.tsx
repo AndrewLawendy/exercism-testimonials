@@ -2,8 +2,11 @@
 import { useTable, usePagination, UseTableOptions } from 'react-table';
 import { keyframes } from '@emotion/react';
 
-import { Button, ButtonToggle } from 'libs/@exercism-ui/button/src';
-import { Loading } from 'libs/@exercism-ui/icons/src';
+import {
+  Button,
+  ButtonToggle,
+} from '@exercism-testimonials/@exercism-ui/button';
+import { Loading } from '@exercism-testimonials/@exercism-ui/icons';
 
 export interface TableProps<T extends Record<string, unknown>>
   extends UseTableOptions<T> {

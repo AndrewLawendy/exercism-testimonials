@@ -5,7 +5,7 @@ export interface ExactContextValue extends Omit<ThemeUIContextValue, 'theme'> {
   theme: typeof theme;
 }
 
-const theme = {
+export const theme = {
   space: {
     'spacing-xxs': '4px',
     'spacing-xs': '8px',
@@ -50,5 +50,3 @@ const theme = {
 };
 
 export const useTheme = useThemeUI as () => ExactContextValue;
-
-export default theme;

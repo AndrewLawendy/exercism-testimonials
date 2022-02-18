@@ -1,7 +1,7 @@
 import { addDecorator } from '@storybook/react';
 import { Global, css } from '@emotion/react';
 import { ThemeProvider } from '@theme-ui/core';
-import theme from 'libs/@exercism-ui/theme/src/lib/@exercism-ui-theme';
+import { theme } from '@exercism-testimonials/@exercism-ui/theme';
 
 import '@fontsource/poppins';
 
