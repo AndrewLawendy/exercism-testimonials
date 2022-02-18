@@ -5,6 +5,8 @@ import { Column } from 'react-table';
 import axios from 'axios';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 
+import { Avatar } from '@exercism-testimonials/@exercism-ui/avatar';
+
 const queryClient = new QueryClient();
 const axiosInstance = axios.create({
   baseURL: 'https://dummyapi.io/data/v1',
@@ -53,13 +55,7 @@ const columns: Column<Datum>[] = [
       row: {
         original: { firstName, lastName },
       },
-    }) => (
-      <img
-        src={value}
-        alt={`${firstName} ${lastName}`}
-        sx={{ height: 42, borderRadius: '50%' }}
-      />
-    ),
+    }) => <Avatar src={value} alt={`${firstName} ${lastName}`} size={42} />,
   },
   {
     Header: 'Full Name',
