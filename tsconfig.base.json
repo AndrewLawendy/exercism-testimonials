@@ -18,6 +18,9 @@
       "@exercism-testimonials/@exercism-ui/button": [
         "libs/@exercism-ui/button/src/index.ts"
       ],
+      "@exercism-testimonials/@exercism-ui/input": [
+        "libs/@exercism-ui/input/src/index.ts"
+      ],
       "@exercism-testimonials/@exercism-ui/storybook": [
         "libs/@exercism-ui/storybook/src/index.ts"
       ],

@@ -3,6 +3,8 @@
   "projects": {
     "@exercism-ui-button": "libs/@exercism-ui/button",
     "@exercism-ui-button-e2e": "apps/@exercism-ui-button-e2e",
+    "@exercism-ui-input": "libs/@exercism-ui/input",
+    "@exercism-ui-input-e2e": "apps/@exercism-ui-input-e2e",
     "@exercism-ui-storybook": "libs/@exercism-ui/storybook",
     "@exercism-ui-storybook-e2e": "apps/@exercism-ui-storybook-e2e",
     "@exercism-ui-table": "libs/@exercism-ui/table",

@@ -29,6 +29,9 @@ const theme = {
 
     'stroke-19': '#EAECF3',
     'stroke-border-light': '#D5D8E4',
+    'stroke-light-blue': '#2E57E8',
+
+    'active-input-glow': 'rgba(46, 87, 232, 0.25)',
 
     background: '#E5E5E5',
     'background-light': '#FBFCFE',
