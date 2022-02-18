@@ -3,6 +3,7 @@ import { useTable, usePagination, UseTableOptions } from 'react-table';
 import { keyframes } from '@emotion/react';
 
 import { Button, ButtonToggle } from 'libs/@exercism-ui/button/src';
+import { Loading } from 'libs/@exercism-ui/icons/src';
 
 export interface TableProps<T extends Record<string, unknown>>
   extends UseTableOptions<T> {
@@ -134,87 +135,11 @@ function Table<T extends Record<string, unknown>>({
               backgroundColor: 'rgba(251, 252, 254, 0.95)',
             }}
           >
-            <svg
-              width="56"
-              height="64"
-              viewBox="0 0 56 64"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+            <Loading
               sx={{
                 animation: `${loadingAnimation} 2.5s steps(12, end) infinite`,
               }}
-            >
-              <path
-                d="M11.504 11.3413L16.208 17.8133"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M1.33337 25.3413L8.94137 27.8133"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M1.33337 42.6453L8.94137 40.1733"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M11.504 56.6453L16.208 50.1733"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M27.9626 61.992V53.992"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M44.4214 56.6453L39.7174 50.1733"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M54.592 42.6453L46.984 40.1733"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M54.592 25.3413L46.984 27.8133"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M44.4214 11.3413L39.7174 17.8133"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M27.9626 1.992V17.992"
-                stroke="#5C5589"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            />
           </div>
         )}
       </div>

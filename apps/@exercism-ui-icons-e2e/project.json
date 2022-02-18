@@ -1,0 +1,28 @@
+{
+  "root": "apps/@exercism-ui-icons-e2e",
+  "sourceRoot": "apps/@exercism-ui-icons-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/@exercism-ui-icons-e2e/cypress.json",
+        "devServerTarget": "@exercism-ui-icons:storybook"
+      },
+      "configurations": {
+        "ci": {
+          "devServerTarget": "@exercism-ui-icons:storybook:ci"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/@exercism-ui-icons-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["@exercism-ui-icons"]
+}
