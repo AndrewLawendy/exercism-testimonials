@@ -26,6 +26,8 @@ const theme = {
     'dark-text-label': '#F0F3F9',
     'dark-text-label-tertiary': '#6A6781',
 
+    'stroke-19': '#EAECF3',
+
     background: '#E5E5E5',
     'background-light': '#FBFCFE',
 
@@ -34,6 +36,8 @@ const theme = {
     'divider-light': '#E0E0ED',
 
     border: '#C8D5EF',
+
+    'table-hover': '#F4F7FD',
   },
   shadows: {
     large: '0px 4px 42px rgba(79, 114, 205, 0.15)',

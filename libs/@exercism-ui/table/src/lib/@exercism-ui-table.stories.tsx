@@ -1,14 +1,8 @@
 import { Story, Meta } from '@storybook/react';
-import { ExercismUiTable, ExercismUiTableProps } from './@exercism-ui-table';
+import TableWrapperApp from './@exercism-ui-table-wrapper';
 
 export default {
-  component: ExercismUiTable,
-  title: 'ExercismUiTable',
+  title: 'Table',
 } as Meta;
 
-const Template: Story<ExercismUiTableProps> = (args) => (
-  <ExercismUiTable {...args} />
-);
-
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Basic: Story = () => <TableWrapperApp />;
