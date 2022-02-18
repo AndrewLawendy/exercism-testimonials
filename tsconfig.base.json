@@ -15,6 +15,18 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@exercism-testimonials/@exercism-ui/avatar": [
+        "libs/@exercism-ui/avatar/src/index.ts"
+      ],
+      "@exercism-testimonials/@exercism-ui/button": [
+        "libs/@exercism-ui/button/src/index.ts"
+      ],
+      "@exercism-testimonials/@exercism-ui/icons": [
+        "libs/@exercism-ui/icons/src/index.ts"
+      ],
+      "@exercism-testimonials/@exercism-ui/input": [
+        "libs/@exercism-ui/input/src/index.ts"
+      ],
       "@exercism-testimonials/@exercism-ui/storybook": [
         "libs/@exercism-ui/storybook/src/index.ts"
       ],
