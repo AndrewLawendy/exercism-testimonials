@@ -180,37 +180,6 @@ export const Badge = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-export const BadgeIndicator = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 22 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
-    <path
-      d="M10 1.73205C10.6188 1.37479 11.3812 1.37479 12 1.73205L19.3923 6C20.0111 6.35727 20.3923 7.01752 20.3923 7.73205V16.2679C20.3923 16.9825 20.0111 17.6427 19.3923 18L12 22.2679C11.3812 22.6252 10.6188 22.6252 10 22.2679L2.6077 18C1.98889 17.6427 1.6077 16.9825 1.6077 16.268V7.73205C1.6077 7.01752 1.98889 6.35727 2.6077 6L10 1.73205Z"
-      fill="white"
-      stroke="url(#paint0_linear_264_941)"
-      strokeWidth="2"
-    />
-    <defs>
-      <linearGradient
-        id="paint0_linear_264_941"
-        x1="11"
-        y1="0"
-        x2="11"
-        y2="24"
-        gradientUnits="userSpaceOnUse"
-      >
-        <stop stopColor="#2200FF" />
-        <stop offset="1" stopColor="#9E00FF" />
-      </linearGradient>
-    </defs>
-  </svg>
-);
-
 export const CaretDown = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
     width="24"
@@ -242,6 +211,87 @@ export const CaretRight = (props: React.SVGProps<SVGSVGElement>) => (
     <path
       d="M1.66669 1.5L8.81335 8.64667C8.90715 8.74033 8.95986 8.86745 8.95986 9C8.95986 9.13255 8.90715 9.25967 8.81335 9.35333L1.66669 16.5"
       stroke="#5C5589"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const CarSpeed = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12 23.25C18.2132 23.25 23.25 18.2132 23.25 12C23.25 5.7868 18.2132 0.75 12 0.75C5.7868 0.75 0.75 5.7868 0.75 12C0.75 18.2132 5.7868 23.25 12 23.25Z"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12 12.75C12.8284 12.75 13.5 12.0784 13.5 11.25C13.5 10.4216 12.8284 9.75 12 9.75C11.1716 9.75 10.5 10.4216 10.5 11.25C10.5 12.0784 11.1716 12.75 12 12.75Z"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M16.5 17.25C16.5 18.0784 15.8284 18.75 15 18.75H9C8.17157 18.75 7.5 18.0784 7.5 17.25C7.5 16.4216 8.17157 15.75 9 15.75H15C15.8284 15.75 16.5 16.4216 16.5 17.25Z"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M9.17799 3.49799L9.69099 4.90699"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M4.855 7.125L6.154 7.875"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M3.875 12.683L5.353 12.422"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M14.822 3.49799L14.309 4.90699"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M19.145 7.125L13.299 10.5"
+      stroke="white"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M20.125 12.683L18.647 12.422"
+      stroke="white"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -613,6 +663,37 @@ export const Polygon = (props: React.SVGProps<SVGSVGElement>) => (
       d="M34.8334 10.0198L20.5619 1.78017C19.5828 1.21489 18.3765 1.21489 17.3974 1.78017L3.12595 10.0198C2.14686 10.5851 1.54371 11.6298 1.54371 12.7603V29.2396C1.54371 30.3702 2.14686 31.4149 3.12595 31.9802L17.3974 40.2198C18.3765 40.7851 19.5828 40.7851 20.5619 40.2198L34.8334 31.9802C35.8125 31.4149 36.4157 30.3702 36.4157 29.2397V12.7603C36.4157 11.6298 35.8125 10.5851 34.8334 10.0198ZM21.24 0.605659C19.8413 -0.201886 18.1181 -0.201887 16.7193 0.605659L2.44785 8.84531C1.04914 9.65285 0.1875 11.1453 0.1875 12.7603V29.2396C0.1875 30.8547 1.04914 32.3471 2.44785 33.1547L16.7193 41.3943C18.118 42.2019 19.8413 42.2019 21.24 41.3943L35.5115 33.1547C36.9102 32.3471 37.7719 30.8547 37.7719 29.2397V12.7603C37.7719 11.1453 36.9102 9.65285 35.5115 8.84531L21.24 0.605659Z"
       fill="black"
     />
+  </svg>
+);
+
+export const PolygonFilled = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    width="22"
+    height="24"
+    viewBox="0 0 22 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M10 1.73205C10.6188 1.37479 11.3812 1.37479 12 1.73205L19.3923 6C20.0111 6.35727 20.3923 7.01752 20.3923 7.73205V16.2679C20.3923 16.9825 20.0111 17.6427 19.3923 18L12 22.2679C11.3812 22.6252 10.6188 22.6252 10 22.2679L2.6077 18C1.98889 17.6427 1.6077 16.9825 1.6077 16.268V7.73205C1.6077 7.01752 1.98889 6.35727 2.6077 6L10 1.73205Z"
+      fill="white"
+      stroke="url(#paint0_linear_354_941)"
+      strokeWidth="2"
+    />
+    <defs>
+      <linearGradient
+        id="paint0_linear_354_941"
+        x1="11"
+        y1="0"
+        x2="11"
+        y2="24"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#2200FF" />
+        <stop offset="1" stopColor="#9E00FF" />
+      </linearGradient>
+    </defs>
   </svg>
 );
 
