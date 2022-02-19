@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { useState } from 'react';
-import Table from './@exercism-ui-table';
+import { Table } from './@exercism-ui-table';
 import { Column } from 'react-table';
 import axios from 'axios';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -29,12 +29,12 @@ export interface UsersListResponse {
   total: number;
 }
 
-export interface Datum {
+export type Datum = {
   firstName: string;
   id: string;
   lastName: string;
   picture: string;
-}
+};
 
 const useUsersList = (params: UsersListParams) => {
   const getUsersList = (params: UsersListParams) => {

@@ -25,7 +25,7 @@ export interface TableProps<T extends Record<string, unknown>>
 
 const loadingAnimation = keyframes({ to: { transform: 'rotate(360deg)' } });
 
-function Table<T extends Record<string, unknown>>({
+export function Table<T extends Record<string, unknown>>({
   isLoading = false,
   hasHeaders = true,
   paginationConfig: { totalCount, onPageChange } = {},
@@ -58,9 +58,6 @@ function Table<T extends Record<string, unknown>>({
   return (
     <div
       sx={{
-        borderRadius: 8,
-        boxShadow: 'large',
-        overflow: 'hidden',
         color: 'light-text',
       }}
     >
@@ -204,4 +201,27 @@ function Table<T extends Record<string, unknown>>({
   );
 }
 
-export default Table;
+declare module 'react-table' {
+  export interface TableInstance<D>
+    extends UseColumnOrderInstanceProps<D>,
+      UseExpandedInstanceProps<D>,
+      UseFiltersInstanceProps<D>,
+      UseGlobalFiltersInstanceProps<D>,
+      UseGroupByInstanceProps<D>,
+      UsePaginationInstanceProps<D>,
+      UseRowSelectInstanceProps<D>,
+      UseRowStateInstanceProps<D>,
+      UseSortByInstanceProps<D> {}
+
+  export interface TableState<D>
+    extends UseColumnOrderState<D>,
+      UseExpandedState<D>,
+      UseFiltersState<D>,
+      UseGlobalFiltersState<D>,
+      UseGroupByState<D>,
+      UsePaginationState<D>,
+      UseResizeColumnsState<D>,
+      UseRowSelectState<D>,
+      UseRowStateState<D>,
+      UseSortByState<D> {}
+}

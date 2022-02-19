@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@theme-ui/core';
 import { Global, css } from '@emotion/react';
 import { theme } from '@exercism-testimonials/@exercism-ui/theme';
@@ -46,7 +47,9 @@ export function App() {
           `}
         />
 
-        <Main />
+        <Router>
+          <Main />
+        </Router>
       </QueryClientProvider>
     </ThemeProvider>
   );

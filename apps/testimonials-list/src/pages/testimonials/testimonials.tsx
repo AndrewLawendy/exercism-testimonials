@@ -4,8 +4,21 @@ import {
   Happy,
   Zigzag,
 } from '@exercism-testimonials/@exercism-ui/icons';
+import { Table } from '@exercism-testimonials/@exercism-ui/table';
+
+import useFilters from '../../hooks/use-filters/use-filters';
+import useTestimonialsList from '../../resources/use-testimonials-list/use-testimonials-list';
+
+import { TestimonialsListParams } from '../../resources/use-testimonials-list/use-testimonials-list';
+import TestimonialsListColumns from './testimonials-list-columns';
 
 export function Testimonials() {
+  const [filters, updateFilters] = useFilters<TestimonialsListParams>({
+    page: 1,
+  });
+  const { data: testimonials, isLoading: isTestimonialsLoading } =
+    useTestimonialsList(filters);
+
   return (
     <>
       <div
@@ -33,7 +46,7 @@ export function Testimonials() {
             }}
           />
         </div>
-        <div sx={{ display: 'flex', mt: 10, mb: 12 }}>
+        <div sx={{ display: 'flex', alignItems: 'center', mt: 10, mb: 12 }}>
           <h2 sx={{ m: 0, variant: 'text.h2' }}>Testimonials I’ve left</h2>
           <div
             sx={{
@@ -50,7 +63,18 @@ export function Testimonials() {
         </div>
         <Zigzag />
       </div>
-      <div></div>
+      <div sx={{ borderRadius: 8, boxShadow: 'large', overflow: 'hidden' }}>
+        <Table
+          data={testimonials?.results || []}
+          columns={TestimonialsListColumns}
+          isLoading={isTestimonialsLoading}
+          hasHeaders={false}
+          paginationConfig={{
+            totalCount: testimonials?.pagination.total_count || 0,
+            onPageChange: (pageIndex) => updateFilters({ page: pageIndex + 1 }),
+          }}
+        />
+      </div>
     </>
   );
 }
