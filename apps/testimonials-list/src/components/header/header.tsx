@@ -25,9 +25,11 @@ export function Header() {
         position: 'sticky',
         top: 0,
         height: 64,
+        zIndex: 1,
         borderBottom: '1px solid',
         borderColor: 'border',
         px: 'spacing-l',
+        backgroundColor: '#fff',
       }}
     >
       <nav>

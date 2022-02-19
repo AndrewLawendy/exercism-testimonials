@@ -41,6 +41,7 @@ export const theme = {
     'divider-light': '#E0E0ED',
 
     border: '#C8D5EF',
+    'border-light': '#CBC9D9',
 
     'table-hover': '#F4F7FD',
   },

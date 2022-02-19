@@ -26,6 +26,7 @@ export function App() {
             html {
               box-sizing: border-box;
               font-family: 'Poppins';
+              background-color: #fbfcfe;
             }
 
             html *,
