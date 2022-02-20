@@ -16,7 +16,7 @@ export function Menu({ menuButton, ...props }: MenuProps) {
       {...props}
       overflow="auto"
       position="anchor"
-      menuButton={() => (
+      menuButton={({ open }) => (
         <div sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           {menuButton}
           <CaretDown
@@ -24,6 +24,8 @@ export function Menu({ menuButton, ...props }: MenuProps) {
               width: 12,
               height: 6,
               ml: 14,
+              transition: 'transform .2s',
+              transform: open ? 'rotate(-180deg)' : null,
 
               path: {
                 strokeWidth: 3,

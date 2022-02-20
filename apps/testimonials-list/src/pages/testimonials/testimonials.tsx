@@ -152,6 +152,7 @@ export function Testimonials() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
+                    width: '100%',
                   }}
                 >
                   <div sx={{ display: 'flex', alignItems: 'center' }}>
@@ -195,6 +196,7 @@ export function Testimonials() {
                     sx={{
                       display: 'flex',
                       alignItems: 'center',
+                      width: '100%',
                     }}
                   >
                     <div
