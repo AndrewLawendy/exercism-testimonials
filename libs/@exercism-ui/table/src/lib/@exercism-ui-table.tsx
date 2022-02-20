@@ -1,6 +1,7 @@
 /** @jsxImportSource theme-ui */
 import { useTable, usePagination, UseTableOptions } from 'react-table';
 import { keyframes } from '@emotion/react';
+import ReactPaginate from 'react-paginate';
 
 import {
   Button,
@@ -31,8 +32,8 @@ export function Table<T extends Record<string, unknown>>({
   isLoading = false,
   hasHeaders = true,
   paginationConfig: {
-    initialPageIndex,
-    totalCount,
+    initialPageIndex = 0,
+    totalCount = 0,
     totalPages,
     onPageChange,
   } = {},
@@ -55,10 +56,8 @@ export function Table<T extends Record<string, unknown>>({
     {
       ...props,
       initialState: { pageIndex: initialPageIndex },
-      ...(totalCount && {
-        manualPagination: true,
-        pageCount: totalPages || Math.ceil(totalCount / 10),
-      }),
+      manualPagination: true,
+      pageCount: totalPages || Math.ceil(totalCount / 10),
     },
     usePagination
   );
@@ -156,56 +155,74 @@ export function Table<T extends Record<string, unknown>>({
         )}
       </div>
 
-      {/* Pagination */}
       {pageOptions.length > 1 && (
-        <div
+        <ReactPaginate
           sx={{
             display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
+            gap: 12,
             borderTop: '1px solid',
             borderColor: 'stroke-19',
+            m: 0,
             px: 'spacing-l',
             py: 'spacing-s',
+
+            li: {
+              listStyleType: 'none',
+            },
+
+            '.previous': {
+              flexGrow: 1,
+            },
+
+            '.next': {
+              flexGrow: 1,
+              display: 'flex',
+              justifyContent: 'flex-end',
+            },
           }}
-        >
-          <Button
-            icon={<ArrowLeft />}
-            iconPosition="start"
-            disabled={!canPreviousPage}
-            onClick={() => {
-              previousPage();
-              onPageChange?.(pageIndex - 1);
-            }}
-          >
-            Previous
-          </Button>
-          <div sx={{ display: 'flex', gap: 12 }}>
-            {pageOptions.map((pageOption: number) => (
-              <ButtonToggle
-                active={pageOption === pageIndex}
-                key={`pagination-${pageOption}`}
-                onClick={() => {
-                  gotoPage(pageOption);
-                  onPageChange?.(pageOption);
-                }}
-              >
-                {pageOption + 1}
-              </ButtonToggle>
-            ))}
-          </div>
-          <Button
-            icon={<ArrowRight />}
-            iconPosition="end"
-            disabled={!canNextPage}
-            onClick={() => {
-              nextPage();
-              onPageChange?.(pageIndex + 1);
-            }}
-          >
-            Next
-          </Button>
-        </div>
+          pageCount={pageOptions.length}
+          initialPage={pageIndex}
+          pageRangeDisplayed={pageOptions.length > 10 ? 3 : 10}
+          previousLabel={
+            <Button
+              icon={<ArrowLeft />}
+              iconPosition="start"
+              disabled={!canPreviousPage}
+              onClick={() => {
+                previousPage();
+                onPageChange?.(pageIndex - 1);
+              }}
+            >
+              Previous
+            </Button>
+          }
+          nextLabel={
+            <Button
+              icon={<ArrowRight />}
+              iconPosition="end"
+              disabled={!canNextPage}
+              onClick={() => {
+                nextPage();
+                onPageChange?.(pageIndex + 1);
+              }}
+            >
+              Next
+            </Button>
+          }
+          pageLabelBuilder={(page) => (
+            <ButtonToggle
+              active={page - 1 === pageIndex}
+              key={`pagination-${page}`}
+              onClick={() => {
+                gotoPage(page - 1);
+                onPageChange?.(page - 1);
+              }}
+            >
+              {page}
+            </ButtonToggle>
+          )}
+        />
       )}
     </div>
   );
@@ -234,4 +251,8 @@ declare module 'react-table' {
       UseRowSelectState<D>,
       UseRowStateState<D>,
       UseSortByState<D> {}
+
+  export interface TableOptions<D>
+    extends UsePaginationOptions<D>,
+      UseSortByOptions<D> {}
 }
