@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import { useEffect } from 'react';
 import { useTable, usePagination, UseTableOptions } from 'react-table';
 import { keyframes } from '@emotion/react';
 import ReactPaginate from 'react-paginate';
@@ -19,7 +20,7 @@ export interface TableProps<T extends Record<string, unknown>>
   hasHeaders?: boolean;
 
   paginationConfig?: {
-    initialPageIndex?: number;
+    pageIndex?: number;
     totalCount?: number;
     totalPages?: number;
     onPageChange?: (pageIndex: number) => void;
@@ -32,8 +33,8 @@ export function Table<T extends Record<string, unknown>>({
   isLoading = false,
   hasHeaders = true,
   paginationConfig: {
-    initialPageIndex = 0,
     totalCount = 0,
+    pageIndex,
     totalPages,
     onPageChange,
   } = {},
@@ -45,7 +46,7 @@ export function Table<T extends Record<string, unknown>>({
     headerGroups,
     rows,
     prepareRow,
-    state: { pageIndex },
+    state: { pageIndex: statePageIndex },
     pageOptions,
     canPreviousPage,
     canNextPage,
@@ -55,12 +56,18 @@ export function Table<T extends Record<string, unknown>>({
   } = useTable(
     {
       ...props,
-      initialState: { pageIndex: initialPageIndex },
+      initialState: { pageIndex: pageIndex ?? 0 },
       manualPagination: true,
       pageCount: totalPages || Math.ceil(totalCount / 10),
     },
     usePagination
   );
+
+  useEffect(() => {
+    if (pageIndex != undefined && pageIndex !== statePageIndex) {
+      gotoPage(pageIndex);
+    }
+  }, [pageIndex]);
 
   return (
     <div
@@ -182,7 +189,7 @@ export function Table<T extends Record<string, unknown>>({
             },
           }}
           pageCount={pageOptions.length}
-          initialPage={pageIndex}
+          initialPage={statePageIndex}
           pageRangeDisplayed={pageOptions.length > 10 ? 3 : 10}
           previousLabel={
             <Button
@@ -191,7 +198,7 @@ export function Table<T extends Record<string, unknown>>({
               disabled={!canPreviousPage}
               onClick={() => {
                 previousPage();
-                onPageChange?.(pageIndex - 1);
+                onPageChange?.(statePageIndex - 1);
               }}
             >
               Previous
@@ -204,7 +211,7 @@ export function Table<T extends Record<string, unknown>>({
               disabled={!canNextPage}
               onClick={() => {
                 nextPage();
-                onPageChange?.(pageIndex + 1);
+                onPageChange?.(statePageIndex + 1);
               }}
             >
               Next
@@ -212,7 +219,7 @@ export function Table<T extends Record<string, unknown>>({
           }
           pageLabelBuilder={(page) => (
             <ButtonToggle
-              active={page - 1 === pageIndex}
+              active={page - 1 === statePageIndex}
               key={`pagination-${page}`}
               onClick={() => {
                 gotoPage(page - 1);

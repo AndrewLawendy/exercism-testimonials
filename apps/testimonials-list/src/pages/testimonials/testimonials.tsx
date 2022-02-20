@@ -118,7 +118,7 @@ export function Testimonials() {
           isLoading={isFetching && isPreviousData}
           hasHeaders={false}
           paginationConfig={{
-            initialPageIndex: filters.page - 1,
+            pageIndex: filters.page - 1,
             totalCount: testimonials?.pagination.total_count || 0,
             totalPages: testimonials?.pagination.total_pages,
             onPageChange: (pageIndex) => updateFilters({ page: pageIndex + 1 }),
