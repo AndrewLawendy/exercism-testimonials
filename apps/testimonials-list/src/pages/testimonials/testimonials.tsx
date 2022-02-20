@@ -44,7 +44,7 @@ export function Testimonials() {
           updateFilters({ exercise: undefined, page: 1 });
         }
       }, 300),
-    []
+    [updateFilters]
   );
   const allTrackTestimonials = useMemo(() => {
     return Object.values(testimonials?.track_counts ?? {}).reduce(
