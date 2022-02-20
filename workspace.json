@@ -9,6 +9,8 @@
     "@exercism-ui-icons-e2e": "apps/@exercism-ui-icons-e2e",
     "@exercism-ui-input": "libs/@exercism-ui/input",
     "@exercism-ui-input-e2e": "apps/@exercism-ui-input-e2e",
+    "@exercism-ui-menu": "libs/@exercism-ui/menu",
+    "@exercism-ui-menu-e2e": "apps/@exercism-ui-menu-e2e",
     "@exercism-ui-storybook": "libs/@exercism-ui/storybook",
     "@exercism-ui-storybook-e2e": "apps/@exercism-ui-storybook-e2e",
     "@exercism-ui-table": "libs/@exercism-ui/table",
