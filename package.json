@@ -16,6 +16,7 @@
     "@fontsource/poppins": "^4.5.1",
     "axios": "^0.26.0",
     "core-js": "^3.6.5",
+    "javascript-time-ago": "^2.3.13",
     "normalize.css": "^8.0.1",
     "query-string": "^7.1.1",
     "react": "17.0.2",

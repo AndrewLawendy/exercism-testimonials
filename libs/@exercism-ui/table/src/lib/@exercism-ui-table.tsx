@@ -18,7 +18,9 @@ export interface TableProps<T extends Record<string, unknown>>
   hasHeaders?: boolean;
 
   paginationConfig?: {
+    initialPageIndex?: number;
     totalCount?: number;
+    totalPages?: number;
     onPageChange?: (pageIndex: number) => void;
   };
 }
@@ -28,7 +30,12 @@ const loadingAnimation = keyframes({ to: { transform: 'rotate(360deg)' } });
 export function Table<T extends Record<string, unknown>>({
   isLoading = false,
   hasHeaders = true,
-  paginationConfig: { totalCount, onPageChange } = {},
+  paginationConfig: {
+    initialPageIndex,
+    totalCount,
+    totalPages,
+    onPageChange,
+  } = {},
   ...props
 }: TableProps<T>) {
   const {
@@ -47,9 +54,10 @@ export function Table<T extends Record<string, unknown>>({
   } = useTable(
     {
       ...props,
+      initialState: { pageIndex: initialPageIndex },
       ...(totalCount && {
         manualPagination: true,
-        pageCount: Math.ceil(totalCount / 10),
+        pageCount: totalPages || Math.ceil(totalCount / 10),
       }),
     },
     usePagination
@@ -149,54 +157,56 @@ export function Table<T extends Record<string, unknown>>({
       </div>
 
       {/* Pagination */}
-      <div
-        sx={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          borderTop: '1px solid',
-          borderColor: 'stroke-19',
-          px: 'spacing-l',
-          py: 'spacing-s',
-        }}
-      >
-        <Button
-          icon={<ArrowLeft />}
-          iconPosition="start"
-          disabled={!canPreviousPage}
-          onClick={() => {
-            previousPage();
-            onPageChange?.(pageIndex - 1);
+      {pageOptions.length > 1 && (
+        <div
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            borderTop: '1px solid',
+            borderColor: 'stroke-19',
+            px: 'spacing-l',
+            py: 'spacing-s',
           }}
         >
-          Previous
-        </Button>
-        <div sx={{ display: 'flex', gap: 12 }}>
-          {pageOptions.map((pageOption: number) => (
-            <ButtonToggle
-              active={pageOption === pageIndex}
-              key={`pagination-${pageOption}`}
-              onClick={() => {
-                gotoPage(pageOption);
-                onPageChange?.(pageOption);
-              }}
-            >
-              {pageOption + 1}
-            </ButtonToggle>
-          ))}
+          <Button
+            icon={<ArrowLeft />}
+            iconPosition="start"
+            disabled={!canPreviousPage}
+            onClick={() => {
+              previousPage();
+              onPageChange?.(pageIndex - 1);
+            }}
+          >
+            Previous
+          </Button>
+          <div sx={{ display: 'flex', gap: 12 }}>
+            {pageOptions.map((pageOption: number) => (
+              <ButtonToggle
+                active={pageOption === pageIndex}
+                key={`pagination-${pageOption}`}
+                onClick={() => {
+                  gotoPage(pageOption);
+                  onPageChange?.(pageOption);
+                }}
+              >
+                {pageOption + 1}
+              </ButtonToggle>
+            ))}
+          </div>
+          <Button
+            icon={<ArrowRight />}
+            iconPosition="end"
+            disabled={!canNextPage}
+            onClick={() => {
+              nextPage();
+              onPageChange?.(pageIndex + 1);
+            }}
+          >
+            Next
+          </Button>
         </div>
-        <Button
-          icon={<ArrowRight />}
-          iconPosition="end"
-          disabled={!canNextPage}
-          onClick={() => {
-            nextPage();
-            onPageChange?.(pageIndex + 1);
-          }}
-        >
-          Next
-        </Button>
-      </div>
+      )}
     </div>
   );
 }

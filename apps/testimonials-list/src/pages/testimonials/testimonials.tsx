@@ -63,14 +63,33 @@ export function Testimonials() {
         </div>
         <Zigzag />
       </div>
-      <div sx={{ borderRadius: 8, boxShadow: 'large', overflow: 'hidden' }}>
+      <div
+        sx={{
+          borderRadius: 8,
+          boxShadow: 'large',
+          overflow: 'hidden',
+
+          table: {
+            td: {
+              '&:nth-of-type(3)': {
+                width: 398,
+              },
+              '&:nth-of-type(4)': {
+                width: 657,
+              },
+            },
+          },
+        }}
+      >
         <Table
           data={testimonials?.results || []}
           columns={TestimonialsListColumns}
           isLoading={isTestimonialsLoading}
           hasHeaders={false}
           paginationConfig={{
+            initialPageIndex: filters.page - 1,
             totalCount: testimonials?.pagination.total_count || 0,
+            totalPages: testimonials?.pagination.total_pages,
             onPageChange: (pageIndex) => updateFilters({ page: pageIndex + 1 }),
           }}
         />

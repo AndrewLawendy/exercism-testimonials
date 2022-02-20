@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import axiosInstance from '../../api';
 
 export type TestimonialsListParams = {
-  page?: number;
+  page: number;
   track?: string;
   exercise?: string;
   order?: 'newest_first' | 'oldest_first';
