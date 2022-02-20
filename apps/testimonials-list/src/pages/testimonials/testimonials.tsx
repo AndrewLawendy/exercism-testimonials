@@ -57,6 +57,12 @@ export function Testimonials() {
     return () => debouncedChangeHandler.cancel();
   }, []);
 
+  useEffect(() => {
+    if (filters.track && tracks) {
+      setSelectedTrack(tracks.find(({ slug }) => filters.track === slug));
+    }
+  }, [tracks]);
+
   return (
     <>
       <div
