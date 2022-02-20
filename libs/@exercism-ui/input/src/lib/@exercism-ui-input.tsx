@@ -8,7 +8,7 @@ export interface InputProps
   postDecorator?: React.ReactElement | string;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ preDecorator, postDecorator, onFocus, onBlur, ...props }, ref) => {
     const [focused, setFocused] = useState(false);
     const { theme } = useTheme();
@@ -61,5 +61,3 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
-
-export default Input;

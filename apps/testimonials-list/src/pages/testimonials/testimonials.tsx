@@ -1,10 +1,14 @@
 /** @jsxImportSource theme-ui */
+import { useMemo, useEffect } from 'react';
+import debounce from 'lodash.debounce';
 import {
   Polygon,
   Happy,
   Zigzag,
+  Search,
 } from '@exercism-testimonials/@exercism-ui/icons';
 import { Table } from '@exercism-testimonials/@exercism-ui/table';
+import { Input } from '@exercism-testimonials/@exercism-ui/input';
 
 import useFilters from '../../hooks/use-filters/use-filters';
 import useTestimonialsList from '../../resources/use-testimonials-list/use-testimonials-list';
@@ -21,6 +25,21 @@ export function Testimonials() {
     isFetching,
     isPreviousData,
   } = useTestimonialsList(filters);
+  const debouncedChangeHandler = useMemo(
+    () =>
+      debounce((e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value) {
+          updateFilters({ exercise: e.target.value, page: 1 });
+        } else {
+          updateFilters({ exercise: undefined, page: 1 });
+        }
+      }, 300),
+    []
+  );
+
+  useEffect(() => {
+    return () => debouncedChangeHandler.cancel();
+  }, []);
 
   return (
     <>
@@ -84,6 +103,15 @@ export function Testimonials() {
           },
         }}
       >
+        <div sx={{ px: 26, py: 18 }}>
+          <Input
+            role="searchbox"
+            placeholder="Filter by exercise title"
+            defaultValue={filters.exercise}
+            preDecorator={<Search />}
+            onChange={debouncedChangeHandler}
+          />
+        </div>
         <Table
           data={testimonials?.results || []}
           columns={TestimonialsListColumns}
