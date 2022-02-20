@@ -43,7 +43,9 @@ const useUsersList = (params: UsersListParams) => {
     });
   };
 
-  return useQuery(['users-list', params], () => getUsersList(params));
+  return useQuery(['users-list', params], () => getUsersList(params), {
+    keepPreviousData: true,
+  });
 };
 
 const columns: Column<Datum>[] = [
@@ -73,13 +75,13 @@ function TableWrapper() {
     page: 0,
     limit: 10,
   });
-  const { data: users, isLoading } = useUsersList(params);
+  const { data: users, isFetching, isPreviousData } = useUsersList(params);
 
   return (
     <Table
       data={users?.data || []}
       columns={columns}
-      isLoading={isLoading}
+      isLoading={isFetching && isPreviousData}
       hasHeaders={false}
       paginationConfig={{
         totalCount: users?.total || 0,

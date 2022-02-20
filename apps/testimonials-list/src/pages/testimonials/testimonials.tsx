@@ -16,8 +16,11 @@ export function Testimonials() {
   const [filters, updateFilters] = useFilters<TestimonialsListParams>({
     page: 1,
   });
-  const { data: testimonials, isLoading: isTestimonialsLoading } =
-    useTestimonialsList(filters);
+  const {
+    data: testimonials,
+    isFetching,
+    isPreviousData,
+  } = useTestimonialsList(filters);
 
   return (
     <>
@@ -84,7 +87,7 @@ export function Testimonials() {
         <Table
           data={testimonials?.results || []}
           columns={TestimonialsListColumns}
-          isLoading={isTestimonialsLoading}
+          isLoading={isFetching && isPreviousData}
           hasHeaders={false}
           paginationConfig={{
             initialPageIndex: filters.page - 1,

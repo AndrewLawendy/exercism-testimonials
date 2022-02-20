@@ -57,8 +57,10 @@ async function getTestimonialsList(params: TestimonialsListParams) {
 }
 
 export function useTestimonialsList(params: TestimonialsListParams) {
-  return useQuery(['testimonials-list', params], () =>
-    getTestimonialsList(params)
+  return useQuery(
+    ['testimonials-list', params],
+    () => getTestimonialsList(params),
+    { keepPreviousData: true }
   );
 }
 
