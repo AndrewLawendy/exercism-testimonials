@@ -10,6 +10,8 @@ import {
 import { Table } from '@exercism-testimonials/@exercism-ui/table';
 import { Input } from '@exercism-testimonials/@exercism-ui/input';
 
+import NoData from '../../components/no-data/no-data';
+
 import useFilters from '../../hooks/use-filters/use-filters';
 import useTestimonialsList from '../../resources/use-testimonials-list/use-testimonials-list';
 
@@ -24,6 +26,7 @@ export function Testimonials() {
     data: testimonials,
     isFetching,
     isPreviousData,
+    isLoading,
   } = useTestimonialsList(filters);
   const debouncedChangeHandler = useMemo(
     () =>
@@ -115,8 +118,11 @@ export function Testimonials() {
         <Table
           data={testimonials?.results || []}
           columns={TestimonialsListColumns}
-          isLoading={isFetching && isPreviousData}
+          isLoading={isLoading || (isFetching && isPreviousData)}
           hasHeaders={false}
+          noData={
+            <NoData message="No testimonials with the current filters " />
+          }
           paginationConfig={{
             pageIndex: filters.page - 1,
             totalCount: testimonials?.pagination.total_count || 0,
