@@ -8,9 +8,14 @@ import {
 } from '@szhsin/react-menu';
 import { CaretDown } from '@exercism-testimonials/@exercism-ui/icons';
 
+import '@szhsin/react-menu/dist/index.css';
+
 export function Menu({ menuButton, ...props }: MenuProps) {
   return (
     <ReactMenu
+      {...props}
+      overflow="auto"
+      position="anchor"
       menuButton={() => (
         <div sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
           {menuButton}
@@ -19,11 +24,14 @@ export function Menu({ menuButton, ...props }: MenuProps) {
               width: 12,
               height: 6,
               ml: 14,
+
+              path: {
+                strokeWidth: 3,
+              },
             }}
           />
         </div>
       )}
-      {...props}
       sx={{
         '.szh-menu': {
           m: 0,
@@ -56,6 +64,7 @@ const MenuItemStyled =
           cursor: 'pointer',
           py: 'spacing-xs',
           px: 'spacing-m',
+          outline: 0,
 
           '&.szh-menu__item--disabled': {
             cursor: 'not-allowed',
@@ -63,6 +72,10 @@ const MenuItemStyled =
 
           '&.szh-menu__item--hover': {
             backgroundColor: 'dark-text-label',
+          },
+
+          '&.szh-menu__item--active': {
+            color: 'inherit',
           },
         }}
       />
