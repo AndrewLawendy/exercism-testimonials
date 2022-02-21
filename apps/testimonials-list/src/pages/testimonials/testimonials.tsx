@@ -9,6 +9,7 @@ import {
   Zigzag,
   Search,
   LogoPolygon,
+  Close,
 } from '@exercism-testimonials/@exercism-ui/icons';
 import { Table } from '@exercism-testimonials/@exercism-ui/table';
 import { Input } from '@exercism-testimonials/@exercism-ui/input';
@@ -35,6 +36,7 @@ export function Testimonials() {
     useFilters<TestimonialsListParams>({
       page: 1,
     });
+  const [exerciseInput, setExerciseInput] = useState(filters.exercise);
   const {
     data: testimonials,
     isFetching,
@@ -279,9 +281,23 @@ export function Testimonials() {
             <Input
               role="searchbox"
               placeholder="Filter by exercise title"
-              defaultValue={filters.exercise}
+              value={exerciseInput}
               preDecorator={<Search />}
-              onChange={debouncedChangeHandler}
+              postDecorator={
+                filters.exercise && (
+                  <Close
+                    sx={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      updateFilters({ exercise: undefined, page: 1 });
+                      setExerciseInput('');
+                    }}
+                  />
+                )
+              }
+              onChange={(e) => {
+                debouncedChangeHandler(e);
+                setExerciseInput(e.target.value);
+              }}
             />
           </div>
         </div>
