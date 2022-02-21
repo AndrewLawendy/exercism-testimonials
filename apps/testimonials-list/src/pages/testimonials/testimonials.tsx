@@ -1,6 +1,8 @@
 /** @jsxImportSource theme-ui */
 import { useState, useEffect, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import debounce from 'lodash.debounce';
+import { TableRowProps } from 'react-table';
 import {
   Polygon,
   Happy,
@@ -16,7 +18,9 @@ import { RadioButton } from '@exercism-testimonials/@exercism-ui/radio-button';
 import NoData from '../../components/no-data/no-data';
 
 import useFilters from '../../hooks/use-filters/use-filters';
-import useTestimonialsList from '../../resources/use-testimonials-list/use-testimonials-list';
+import useTestimonialsList, {
+  Result,
+} from '../../resources/use-testimonials-list/use-testimonials-list';
 import useTracksList, {
   Track,
 } from '../../resources/use-tracks-list/use-tracks-list';
@@ -25,10 +29,12 @@ import { TestimonialsListParams } from '../../resources/use-testimonials-list/us
 import TestimonialsListColumns from './testimonials-list-columns';
 
 export function Testimonials() {
+  const navigate = useNavigate();
   const [selectedTrack, setSelectedTrack] = useState<Track>();
-  const [filters, updateFilters] = useFilters<TestimonialsListParams>({
-    page: 1,
-  });
+  const [filters, updateFilters, filtersString] =
+    useFilters<TestimonialsListParams>({
+      page: 1,
+    });
   const {
     data: testimonials,
     isFetching,
@@ -53,6 +59,16 @@ export function Testimonials() {
       0
     );
   }, [testimonials?.track_counts]);
+
+  const passRowProps = (props: TableRowProps, { id }: Result) => {
+    return {
+      ...props,
+      onClick: (e: MouseEvent) => {
+        e.preventDefault();
+        navigate(`testimonial/${id}?${filtersString}`);
+      },
+    };
+  };
 
   useEffect(() => {
     return () => debouncedChangeHandler.cancel();
@@ -112,9 +128,11 @@ export function Testimonials() {
         sx={{
           borderRadius: 8,
           boxShadow: 'large',
-          overflow: 'hidden',
 
           table: {
+            tr: {
+              cursor: 'pointer',
+            },
             td: {
               '&:nth-of-type(3)': {
                 width: 398,
@@ -276,6 +294,7 @@ export function Testimonials() {
           noData={
             <NoData message="No testimonials with the current filters " />
           }
+          passRowProps={passRowProps}
           paginationConfig={{
             pageIndex: filters.page - 1,
             totalCount: testimonials?.pagination.total_count || 0,

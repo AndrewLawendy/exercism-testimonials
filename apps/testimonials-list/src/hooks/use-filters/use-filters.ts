@@ -4,7 +4,7 @@ import queryString from 'query-string';
 
 function useFilters<T>(
   initialValue: Partial<T>
-): [T, (newFilters: Partial<T>) => void] {
+): [T, (newFilters: Partial<T>) => void, string] {
   const { search } = useLocation();
   const navigate = useNavigate();
   const searchParams = queryString.parse(search, {
@@ -18,6 +18,11 @@ function useFilters<T>(
   };
 
   const [filters, setFilters] = useState<T>(mergedFilters as T);
+  const [filtersString, setFiltersString] = useState<string>(() =>
+    queryString.stringify(mergedFilters as T, {
+      arrayFormat: 'bracket',
+    })
+  );
 
   function updateFilters(newFilters: Partial<T>) {
     const allFilters: T = {
@@ -28,12 +33,13 @@ function useFilters<T>(
     const allFiltersString = queryString.stringify(allFilters, {
       arrayFormat: 'bracket',
     });
+    setFiltersString(allFiltersString);
     navigate({ search: allFiltersString });
 
     setFilters(allFilters);
   }
 
-  return [filters, updateFilters];
+  return [filters, updateFilters, filtersString];
 }
 
 export default useFilters;

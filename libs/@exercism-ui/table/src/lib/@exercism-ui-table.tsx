@@ -1,6 +1,11 @@
 /** @jsxImportSource theme-ui */
 import { useEffect } from 'react';
-import { useTable, usePagination, UseTableOptions } from 'react-table';
+import {
+  useTable,
+  usePagination,
+  UseTableOptions,
+  TableRowProps,
+} from 'react-table';
 import { keyframes } from '@emotion/react';
 import ReactPaginate from 'react-paginate';
 
@@ -19,6 +24,7 @@ export interface TableProps<T extends Record<string, unknown>>
   isLoading?: boolean;
   hasHeaders?: boolean;
   noData?: React.ReactElement;
+  passRowProps?: (props: TableRowProps, original: T) => TableRowProps;
 
   paginationConfig?: {
     pageIndex?: number;
@@ -34,6 +40,7 @@ export function Table<T extends Record<string, unknown>>({
   isLoading = false,
   hasHeaders = true,
   noData,
+  passRowProps,
   paginationConfig: {
     totalCount = 0,
     pageIndex,
@@ -114,10 +121,14 @@ export function Table<T extends Record<string, unknown>>({
               <tbody {...getTableBodyProps()}>
                 {rows.map((row) => {
                   prepareRow(row);
+                  const { original } = row;
+                  const props = row.getRowProps();
+                  const allProps = passRowProps?.(props, original);
+                  const trProps = allProps ?? props;
 
                   return (
                     <tr
-                      {...row.getRowProps()}
+                      {...trProps}
                       sx={{
                         transition: 'background-color .3s',
 

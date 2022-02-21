@@ -1,4 +1,5 @@
 /** @jsxImportSource theme-ui */
+import { Link } from 'react-router-dom';
 import {
   Logo,
   LogoText,
@@ -56,10 +57,10 @@ export function Header() {
           }}
         >
           <li>
-            <a href="#home" title="Logo">
+            <Link to="/" title="Home">
               <Logo sx={{ mr: 'spacing-xs' }} />
               <LogoText />
-            </a>
+            </Link>
           </li>
 
           <li>
