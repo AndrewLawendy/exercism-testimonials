@@ -11,6 +11,7 @@ import {
 import { Table } from '@exercism-testimonials/@exercism-ui/table';
 import { Input } from '@exercism-testimonials/@exercism-ui/input';
 import { Menu, MenuItem } from '@exercism-testimonials/@exercism-ui/menu';
+import { RadioButton } from '@exercism-testimonials/@exercism-ui/radio-button';
 
 import NoData from '../../components/no-data/no-data';
 
@@ -155,18 +156,24 @@ export function Testimonials() {
                     width: '100%',
                   }}
                 >
-                  <div sx={{ display: 'flex', alignItems: 'center' }}>
-                    <LogoPolygon sx={{ height: 40, mr: 'spacing-s' }} />
-                    <p
-                      sx={{
-                        m: 0,
-                        variant: 'text.p-large',
-                        fontWeight: 'medium',
-                      }}
-                    >
-                      All
-                    </p>
-                  </div>
+                  <RadioButton
+                    name="tracks"
+                    defaultChecked={filters.track === undefined}
+                    sx={{ width: '100%' }}
+                  >
+                    <div sx={{ display: 'flex', alignItems: 'center' }}>
+                      <LogoPolygon sx={{ height: 40, mr: 'spacing-s' }} />
+                      <p
+                        sx={{
+                          m: 0,
+                          variant: 'text.p-large',
+                          fontWeight: 'medium',
+                        }}
+                      >
+                        All
+                      </p>
+                    </div>
+                  </RadioButton>
                   <p
                     sx={{
                       m: 0,
@@ -199,32 +206,38 @@ export function Testimonials() {
                       width: '100%',
                     }}
                   >
-                    <div
-                      sx={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        flexGrow: 1,
-                      }}
+                    <RadioButton
+                      name="tracks"
+                      defaultChecked={filters.track === track.slug}
+                      sx={{ width: '100%' }}
                     >
-                      <img
-                        src={track.icon_url}
-                        alt={track.slug}
-                        sx={{ width: 40, height: 40 }}
-                      />
-                      <p
+                      <div
                         sx={{
-                          my: 0,
-                          mx: 'spacing-s',
-                          variant: 'text.p-large',
-                          fontWeight: 'medium',
-                          whiteSpace: 'nowrap',
-                          overflow: 'hidden',
-                          textOverflow: 'ellipsis',
+                          display: 'flex',
+                          alignItems: 'center',
+                          flexGrow: 1,
                         }}
                       >
-                        {track.title}
-                      </p>
-                    </div>
+                        <img
+                          src={track.icon_url}
+                          alt={track.slug}
+                          sx={{ width: 40, height: 40 }}
+                        />
+                        <p
+                          sx={{
+                            my: 0,
+                            mx: 'spacing-s',
+                            variant: 'text.p-large',
+                            fontWeight: 'medium',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {track.title}
+                        </p>
+                      </div>
+                    </RadioButton>
 
                     <p
                       sx={{
