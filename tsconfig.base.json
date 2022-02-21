@@ -30,6 +30,9 @@
       "@exercism-testimonials/@exercism-ui/menu": [
         "libs/@exercism-ui/menu/src/index.ts"
       ],
+      "@exercism-testimonials/@exercism-ui/radio-button": [
+        "libs/@exercism-ui/radio-button/src/index.ts"
+      ],
       "@exercism-testimonials/@exercism-ui/storybook": [
         "libs/@exercism-ui/storybook/src/index.ts"
       ],
