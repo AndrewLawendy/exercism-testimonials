@@ -129,6 +129,7 @@ export function Table<T extends Record<string, unknown>>({
                   return (
                     <tr
                       {...trProps}
+                      key={(original['id'] as string) || trProps.key}
                       sx={{
                         transition: 'background-color .3s',
 

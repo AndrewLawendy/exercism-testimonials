@@ -6,8 +6,9 @@ export function Select(props: Props) {
   const { theme } = useTheme();
 
   const styles: StylesConfig = {
-    control: (provided, { isFocused }) => ({
+    control: (provided, { isFocused, menuIsOpen }) => ({
       ...provided,
+      cursor: 'pointer',
       borderRadius: 5,
       height: 48,
       backgroundColor: isFocused ? '#fff' : theme.colors['dark-text-label'],
@@ -18,7 +19,7 @@ export function Select(props: Props) {
       transition: 'all .2s',
 
       svg: {
-        transform: isFocused ? 'rotate(-180deg)' : undefined,
+        transform: menuIsOpen ? 'rotate(-180deg)' : undefined,
         transition: 'transform .2s',
       },
     }),

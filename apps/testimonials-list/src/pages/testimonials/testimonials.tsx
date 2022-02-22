@@ -15,6 +15,7 @@ import { Table } from '@exercism-testimonials/@exercism-ui/table';
 import { Input } from '@exercism-testimonials/@exercism-ui/input';
 import { Menu, MenuItem } from '@exercism-testimonials/@exercism-ui/menu';
 import { RadioButton } from '@exercism-testimonials/@exercism-ui/radio-button';
+import { Select } from '@exercism-testimonials/@exercism-ui/select';
 
 import NoData from '../../components/no-data/no-data';
 
@@ -28,6 +29,19 @@ import useTracksList, {
 
 import { TestimonialsListParams } from '../../resources/use-testimonials-list/use-testimonials-list';
 import TestimonialsListColumns from './testimonials-list-columns';
+
+import { SortOption } from './types';
+
+const sortOptions: SortOption[] = [
+  {
+    label: 'Sort by recent first',
+    value: 'newest_first',
+  },
+  {
+    label: 'Sort by oldest first',
+    value: 'oldest_first',
+  },
+];
 
 export function Testimonials() {
   const navigate = useNavigate();
@@ -279,27 +293,46 @@ export function Testimonials() {
               ))}
             </Menu>
           </div>
-          <div sx={{ width: 416 }}>
-            <Input
-              role="searchbox"
-              placeholder="Filter by exercise title"
-              value={exerciseInput}
-              preDecorator={<Search />}
-              postDecorator={
-                filters.exercise && (
-                  <Close
-                    sx={{ cursor: 'pointer' }}
-                    onClick={() => {
-                      updateFilters({ exercise: undefined, page: 1 });
-                      setExerciseInput('');
-                    }}
-                  />
-                )
+          <div
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              flexGrow: 1,
+            }}
+          >
+            <div sx={{ width: 416 }}>
+              <Input
+                role="searchbox"
+                placeholder="Filter by exercise title"
+                value={exerciseInput}
+                preDecorator={<Search />}
+                postDecorator={
+                  filters.exercise && (
+                    <Close
+                      sx={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        updateFilters({ exercise: undefined, page: 1 });
+                        setExerciseInput('');
+                      }}
+                    />
+                  )
+                }
+                onChange={(e) => {
+                  debouncedChangeHandler(e);
+                  setExerciseInput(e.target.value);
+                }}
+              />
+            </div>
+            <Select
+              sx={{ width: 348 }}
+              placeholder="Sort testimonials"
+              value={sortOptions.find(({ value }) => value === filters.order)}
+              onChange={(option) =>
+                updateFilters({
+                  order: (option as SortOption).value,
+                })
               }
-              onChange={(e) => {
-                debouncedChangeHandler(e);
-                setExerciseInput(e.target.value);
-              }}
+              options={sortOptions}
             />
           </div>
         </div>
