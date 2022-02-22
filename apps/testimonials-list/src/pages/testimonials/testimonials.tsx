@@ -46,7 +46,7 @@ const sortOptions: SortOption[] = [
 export function Testimonials() {
   const navigate = useNavigate();
   const [selectedTrack, setSelectedTrack] = useState<Track>();
-  const [filters, updateFilters, filtersString] =
+  const { filters, updateFilters, filtersString } =
     useFilters<TestimonialsListParams>({
       page: 1,
     });
