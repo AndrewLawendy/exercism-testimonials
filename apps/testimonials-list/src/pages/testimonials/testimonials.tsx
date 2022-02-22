@@ -43,6 +43,14 @@ const sortOptions: SortOption[] = [
   },
 ];
 
+const queryExercise = debounce((value: string | undefined, updateFilters) => {
+  if (value) {
+    updateFilters({ exercise: value, page: 1 });
+  } else {
+    updateFilters({ exercise: undefined, page: 1 });
+  }
+}, 400);
+
 export function Testimonials() {
   const navigate = useNavigate();
   const [selectedTrack, setSelectedTrack] = useState<Track>();
@@ -58,17 +66,7 @@ export function Testimonials() {
     isLoading,
   } = useTestimonialsList(filters);
   const { data: tracks } = useTracksList();
-  const debouncedChangeHandler = useMemo(
-    () =>
-      debounce((e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.value) {
-          updateFilters({ exercise: e.target.value, page: 1 });
-        } else {
-          updateFilters({ exercise: undefined, page: 1 });
-        }
-      }, 300),
-    [updateFilters]
-  );
+
   const allTrackTestimonials = useMemo(() => {
     return Object.values(testimonials?.track_counts ?? {}).reduce(
       (count, trackCount) => (count += trackCount),
@@ -85,10 +83,6 @@ export function Testimonials() {
       },
     };
   };
-
-  useEffect(() => {
-    return () => debouncedChangeHandler.cancel();
-  }, []);
 
   useEffect(() => {
     if (filters.track && tracks) {
@@ -318,7 +312,7 @@ export function Testimonials() {
                   )
                 }
                 onChange={(e) => {
-                  debouncedChangeHandler(e);
+                  queryExercise(e.target.value, updateFilters);
                   setExerciseInput(e.target.value);
                 }}
               />
