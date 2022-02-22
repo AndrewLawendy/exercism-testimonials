@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import queryString from 'query-string';
 
-function useFilters<T>(
-  initialValue: Partial<T>
-): [T, (newFilters: Partial<T>) => void, string] {
+function useFilters<T>(initialValue: Partial<T>): {
+  filters: T;
+  updateFilters: (newFilters: Partial<T>) => void;
+  filtersString: string;
+} {
   const { search } = useLocation();
   const navigate = useNavigate();
   const searchParams = queryString.parse(search, {
@@ -39,7 +41,7 @@ function useFilters<T>(
     setFilters(allFilters);
   }
 
-  return [filters, updateFilters, filtersString];
+  return { filters, updateFilters, filtersString };
 }
 
 export default useFilters;
