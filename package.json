@@ -6,6 +6,7 @@
     "start": "nx serve",
     "start:storybook": "nx run @exercism-ui-storybook:storybook",
     "build": "nx build",
+    "build:storybook": "nx run @exercism-ui-storybook:build-storybook",
     "test": "nx test",
     "prepare": "husky install"
   },
