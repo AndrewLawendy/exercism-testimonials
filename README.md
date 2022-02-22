@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ddc0957-3319-4e96-898e-43e5ec399cf2/deploy-status)](https://app.netlify.com/sites/exercism-testimonials/deploys)
+
 # ExercismTestimonials
 
 This project was generated using [Nx](https://nx.dev).
