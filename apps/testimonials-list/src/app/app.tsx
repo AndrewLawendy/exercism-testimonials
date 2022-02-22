@@ -1,15 +1,57 @@
-import styled from '@emotion/styled';
-import NxWelcome from './nx-welcome';
+/** @jsxImportSource theme-ui */
+import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from '@theme-ui/core';
+import { Global, css } from '@emotion/react';
+import { theme } from '@exercism-testimonials/@exercism-ui/theme';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
-const StyledApp = styled.div`
-  // Your style here
-`;
+import '@fontsource/poppins';
+import 'normalize.css';
+
+import Main from '../pages';
 
 export function App() {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: 1,
+      },
+    },
+  });
+
   return (
-    <StyledApp>
-      <NxWelcome title="testimonials-list" />
-    </StyledApp>
+    <ThemeProvider theme={theme}>
+      <QueryClientProvider client={queryClient}>
+        <Global
+          styles={css`
+            html {
+              box-sizing: border-box;
+              font-family: 'Poppins';
+              background-color: #fbfcfe;
+            }
+
+            html *,
+            html *:before,
+            html *:after {
+              box-sizing: inherit;
+            }
+
+            ul {
+              margin: 0;
+              padding: 0;
+
+              li {
+                list-style-type: none;
+              }
+            }
+          `}
+        />
+
+        <Router>
+          <Main />
+        </Router>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

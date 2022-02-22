@@ -41,11 +41,41 @@ export const theme = {
     'divider-light': '#E0E0ED',
 
     border: '#C8D5EF',
+    'border-light': '#CBC9D9',
 
     'table-hover': '#F4F7FD',
   },
   shadows: {
     large: '0px 4px 42px rgba(79, 114, 205, 0.15)',
+    notification: '0px 4px 24px rgba(156, 130, 38, 0.4)',
+  },
+
+  fontWeights: {
+    bold: 700,
+    'medium-bold': 600,
+    medium: 500,
+    regular: 400,
+    light: 300,
+  },
+
+  text: {
+    h2: {
+      fontSize: '1.95rem',
+      fontWeight: 'bold',
+      lineHeight: '2.695rem',
+    },
+    'p-large': {
+      fontSize: '1rem',
+      lineHeight: '1.5rem',
+    },
+    'p-medium': {
+      fontSize: '0.938rem',
+      lineHeight: '1.594rem',
+    },
+    'p-small': {
+      fontSize: '0.875rem',
+      lineHeight: '1.313rem',
+    },
   },
 };
 

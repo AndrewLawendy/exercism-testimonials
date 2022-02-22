@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 
-import TableWrapperApp from './@exercism-ui-table-wrapper';
+import { TableWrapperApp } from './@exercism-ui-table-wrapper';
 
 describe('ExercismUiTable', () => {
   it('should render successfully', () => {

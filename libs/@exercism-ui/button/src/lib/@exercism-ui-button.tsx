@@ -87,3 +87,23 @@ export const ButtonToggle: FC<ButtonToggleProps> = ({
     />
   );
 };
+
+export const IconButton: FC<ThemeUIButtonProps> = (props) => (
+  <ButtonBase
+    {...props}
+    sx={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: 42,
+      height: 36,
+      p: 0,
+      border: 0,
+      borderRadius: 8,
+
+      svg: {
+        height: 20,
+      },
+    }}
+  />
+);

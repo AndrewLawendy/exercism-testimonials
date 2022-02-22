@@ -1,6 +1,6 @@
 /** @jsxImportSource theme-ui */
 import { useState } from 'react';
-import Table from './@exercism-ui-table';
+import { Table } from './@exercism-ui-table';
 import { Column } from 'react-table';
 import axios from 'axios';
 import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
@@ -29,12 +29,12 @@ export interface UsersListResponse {
   total: number;
 }
 
-export interface Datum {
+export type Datum = {
   firstName: string;
   id: string;
   lastName: string;
   picture: string;
-}
+};
 
 const useUsersList = (params: UsersListParams) => {
   const getUsersList = (params: UsersListParams) => {
@@ -43,7 +43,9 @@ const useUsersList = (params: UsersListParams) => {
     });
   };
 
-  return useQuery(['users-list', params], () => getUsersList(params));
+  return useQuery(['users-list', params], () => getUsersList(params), {
+    keepPreviousData: true,
+  });
 };
 
 const columns: Column<Datum>[] = [
@@ -73,13 +75,18 @@ function TableWrapper() {
     page: 0,
     limit: 10,
   });
-  const { data: users, isLoading } = useUsersList(params);
+  const {
+    data: users,
+    isFetching,
+    isPreviousData,
+    isLoading,
+  } = useUsersList(params);
 
   return (
     <Table
       data={users?.data || []}
       columns={columns}
-      isLoading={isLoading}
+      isLoading={isLoading || (isFetching && isPreviousData)}
       hasHeaders={false}
       paginationConfig={{
         totalCount: users?.total || 0,
@@ -89,10 +96,23 @@ function TableWrapper() {
   );
 }
 
-export default function TableWrapperApp() {
+export function TableWrapperApp() {
   return (
     <QueryClientProvider client={queryClient}>
       <TableWrapper />
     </QueryClientProvider>
+  );
+}
+
+export function NoDataTableWrapper() {
+  return (
+    <div sx={{ border: '1px solid', borderColor: 'border' }}>
+      <Table
+        data={[]}
+        columns={columns}
+        hasHeaders={false}
+        noData={<h2 sx={{ variant: 'text.h2' }}>Sorry no data!</h2>}
+      />
+    </div>
   );
 }
