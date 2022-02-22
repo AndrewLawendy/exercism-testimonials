@@ -26,6 +26,7 @@
     "react-paginate": "^8.1.1",
     "react-query": "^3.34.15",
     "react-router-dom": "^6.2.1",
+    "react-select": "^5.2.2",
     "react-table": "^7.7.0",
     "regenerator-runtime": "0.13.7",
     "theme-ui": "^0.13.1",

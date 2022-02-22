@@ -13,6 +13,8 @@
     "@exercism-ui-menu-e2e": "apps/@exercism-ui-menu-e2e",
     "@exercism-ui-radio-button": "libs/@exercism-ui/radio-button",
     "@exercism-ui-radio-button-e2e": "apps/@exercism-ui-radio-button-e2e",
+    "@exercism-ui-select": "libs/@exercism-ui/select",
+    "@exercism-ui-select-e2e": "apps/@exercism-ui-select-e2e",
     "@exercism-ui-storybook": "libs/@exercism-ui/storybook",
     "@exercism-ui-storybook-e2e": "apps/@exercism-ui-storybook-e2e",
     "@exercism-ui-table": "libs/@exercism-ui/table",

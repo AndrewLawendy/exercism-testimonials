@@ -2,13 +2,17 @@
 import {
   Menu as ReactMenu,
   MenuItem as ReactMenuItem,
-  MenuItemProps,
+  MenuItemProps as ReactMenuItemProps,
   applyHOC,
   MenuProps,
 } from '@szhsin/react-menu';
 import { CaretDown } from '@exercism-testimonials/@exercism-ui/icons';
 
 import '@szhsin/react-menu/dist/index.css';
+
+interface MenuItemProps extends ReactMenuItemProps {
+  active?: boolean;
+}
 
 export function Menu({ menuButton, ...props }: MenuProps) {
   return (
@@ -37,7 +41,7 @@ export function Menu({ menuButton, ...props }: MenuProps) {
       sx={{
         '.szh-menu': {
           m: 0,
-          mt: 'spacing-s',
+          mt: 'spacing-xs',
           p: 'spacing-xs',
           borderRadius: 8,
           backgroundColor: '#fff',
@@ -56,16 +60,17 @@ export function Menu({ menuButton, ...props }: MenuProps) {
 
 const MenuItemStyled =
   (MenuItemWrapped: React.NamedExoticComponent<MenuItemProps>) =>
-  (props: MenuItemProps) =>
+  ({ active, ...props }: MenuItemProps) =>
     (
       <MenuItemWrapped
         {...props}
         sx={{
-          backgroundColor: '#fff',
+          backgroundColor: active ? 'dark-text-label' : '#fff',
           transition: 'background-color .2s',
           cursor: 'pointer',
           py: 'spacing-xs',
           px: 'spacing-m',
+          my: 'spacing-xxs',
           outline: 0,
 
           '&.szh-menu__item--disabled': {

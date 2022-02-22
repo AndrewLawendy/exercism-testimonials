@@ -163,6 +163,7 @@ export function Testimonials() {
             >
               <MenuItem
                 key="all"
+                active={filters.track === undefined}
                 onClick={() => {
                   updateFilters({ track: undefined, page: 1 });
                   setSelectedTrack(undefined);
@@ -213,6 +214,7 @@ export function Testimonials() {
                 <MenuItem
                   key={track.slug}
                   value={track}
+                  active={filters.track === track.slug}
                   onClick={() => {
                     updateFilters({ track: track.slug, page: 1 });
                     setSelectedTrack(track);
