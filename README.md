@@ -1,90 +1,54 @@
-# ExercismTestimonials
+# Exercism Testimonials
 
-This project was generated using [Nx](https://nx.dev).
+<p style="text-align: center;">
+<img alt="Exercism Logo" title="Exercism Logo" src="https://avatars.githubusercontent.com/u/5624255?s=200&v=4" />
+</p>
+<img />
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3ddc0957-3319-4e96-898e-43e5ec399cf2/deploy-status)](https://app.netlify.com/sites/exercism-testimonials/deploys)
 
-🔎 **Smart, Fast and Extensible Build System**
+A coding challenge to replicate the testimonials page on Exercism page created using React and Typescript.
 
-## Adding capabilities to your workspace
+As I have a figma design access, I decided to go all the way and create a design system via [Storybook](https://storybook.js.org/) to demonstrate what I would've suggested working with them.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Stack
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- [NX](https://nx.dev/) to handle the monorepo while exposing shareable content such as the design system
+- [Theme UI](https://theme-ui.com/) to create a consumable theme.
+- [Axios](https://axios-http.com/docs/intro)
+- [React Query](https://react-query.tanstack.com/) to handle server synchronization
+- [Husky](https://typicode.github.io/husky/#/), [Lint Staged](https://www.npmjs.com/package/lint-staged?activeTab=readme) and [Commit Lint](https://commitlint.js.org/#/) following conventional commits
 
-Below are our core plugins:
+## Design system
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+![Design System](assets/readme/design-system.gif)
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+## Listing Highlights
 
-## Generate an application
+- Using a design system to consume components
+- Keeping pagination and sorting values in query params and reflect it into filter fields on mount
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+![Testimonials Listing](assets/readme/testimonials.gif)
 
-> You can use any of the plugins above to generate applications as well.
+## Demo
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+- [Design System](https://exercism-ui.netlify.app/?path=/story/theme--colors)
+- [Testimonial List](https://exercism-testimonials.netlify.app/)
 
-## Generate a library
+## Start
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@exercism-testimonials/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+- Run `yarn start` to serve the testimonial list project.
+- Run `yarn start:storybook` to serve the design system project.
 
 ## Build
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Run `yarn build` to build the testimonial list project.
+- Run `yarn build:storybook` to build the design system project.
 
 ## Running unit tests
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Run `yarn test` to execute the unit tests via [Jest](https://jestjs.io).
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+Right now the test cases test the following tests:
 
-## Running end-to-end tests
-
-Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+- `useFilters` custom hook
