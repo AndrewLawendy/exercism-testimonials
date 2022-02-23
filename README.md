@@ -1,9 +1,8 @@
 # Exercism Testimonials
 
-<p style="text-align: center;">
-<img alt="Exercism Logo" title="Exercism Logo" src="https://avatars.githubusercontent.com/u/5624255?s=200&v=4" />
+<p align="center">
+    <img alt="Exercism Logo" title="Exercism Logo" src="https://avatars.githubusercontent.com/u/5624255?s=200&v=4" />
 </p>
-<img />
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3ddc0957-3319-4e96-898e-43e5ec399cf2/deploy-status)](https://app.netlify.com/sites/exercism-testimonials/deploys)
 
@@ -47,8 +46,6 @@ As I have a figma design access, I decided to go all the way and create a design
 
 ## Running unit tests
 
-Run `yarn test` to execute the unit tests via [Jest](https://jestjs.io).
-
-Right now the test cases test the following tests:
+Run `yarn test` to execute the unit tests via [Jest](https://jestjs.io) to the following tests:
 
 - `useFilters` custom hook
